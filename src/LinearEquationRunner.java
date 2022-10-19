@@ -23,6 +23,10 @@ public class LinearEquationRunner
         int x2 = Integer.parseInt(x2String); // converts x2 string to int
         int y2 = Integer.parseInt(y2String); // converts y2 string to int
 
+        LinearEquation points = new LinearEquation(x1, y1, x2, y2);
+        System.out.println(points.getDistance());
+        System.out.println(points.getSlope());
+
 
 
 
