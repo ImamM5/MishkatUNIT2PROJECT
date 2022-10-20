@@ -26,6 +26,8 @@ public class LinearEquationRunner
         LinearEquation points = new LinearEquation(x1, y1, x2, y2);
         System.out.println(points.getDistance());
         System.out.println(points.getSlope());
+        System.out.println(points.getYIntercept());
+        System.out.println(points.getEquation());
 
 
 
