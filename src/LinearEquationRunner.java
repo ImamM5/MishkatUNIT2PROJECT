@@ -5,7 +5,7 @@ public class LinearEquationRunner
     public static void main(String [] args)
     {
         Scanner input = new Scanner(System.in);
-        System.out.println("------------------------- \nWelcome!");
+        System.out.println("----------------------------- \nWelcome!");
         System.out.print("Please enter your coordinate 1 (integers): ");
         String c1 = input.nextLine();
         System.out.print("Please enter your coordinate 2 (integer): ");
@@ -25,23 +25,15 @@ public class LinearEquationRunner
 
         if (x1 == x2)
         {
-            System.out.println("You have entered coordinates that result in a vertical line in the form of x= "+ x1);
+            System.out.println("\nYou have entered coordinates that result in a vertical line in the form of x= "+ x1 + "\n-----------------------------");
         } else {
             LinearEquation points = new LinearEquation(x1, y1, x2, y2);
             System.out.println(points.getInfo());
-            System.out.print("\n Enter a value for x: ");
+            System.out.print("Enter a value for x: ");
             int newX = input.nextInt();
-            System.out.println("\n The point on the line is: "+ points.getCoordinates(newX)+ "\n-------------------------");
+            System.out.println("\nThe point on the line is: "+ points.getCoordinates(newX)+ "\n-----------------------------");
 
         }
-
-
-
-
-
-
-
-
 
 
 

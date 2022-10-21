@@ -54,11 +54,11 @@ public class LinearEquation {
         public String getInfo()
         {
             String text = "\n----------Line Info----------";
-            text+= "\n The two points are: (" + (int)x1 +", "+ (int)y1+ ") and ("+(int)x2 +", "+(int)y2+ ")";
+            text+= "\nThe two points are: (" + (int)x1 +", "+ (int)y1+ ") and ("+(int)x2 +", "+(int)y2+ ")";
             text += "\nThe equation of the line between these points is "+ getEquation();
-            text += "\n The slope of this line is: "+ getSlope();
-            text += "\n The y-intercept of this line is: "+ getYIntercept();
-            text += "\n The distance between the two points is: "+ getDistance();
+            text += "\nThe slope of this line is: "+ getSlope();
+            text += "\nThe y-intercept of this line is: "+ getYIntercept();
+            text += "\nThe distance between the two points is: "+ getDistance();
             text += "\n-----------------------------";
             return text;
         }
