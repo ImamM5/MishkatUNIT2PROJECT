@@ -25,11 +25,17 @@ public class LinearEquationRunner
 
         if (x1 == x2)
         {
-
+            System.out.println("You have entered coordinates that result in a vertical line in the form of x= "+ x1);
+        } else {
+            LinearEquation points = new LinearEquation(x1, y1, x2, y2);
+            System.out.println(points.getInfo());
+            System.out.print("\n Enter a value for x: ");
+            int newX = input.nextInt();
+            System.out.println("\n The point on the line is: "+ points.getCoordinates(newX)+ "\n-------------------------");
 
         }
 
-        LinearEquation points = new LinearEquation(x1, y1, x2, y2);
+
 
 
 

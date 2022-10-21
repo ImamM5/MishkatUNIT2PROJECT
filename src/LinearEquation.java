@@ -21,7 +21,7 @@ public class LinearEquation {
         int num = (int) y2 - (int) y1;
         int denom = (int) x2 - (int) x1;
         this.division = (double) num / denom;
-        if ((num % denom) == 0.0) {
+        if ((num % denom) == 0) {
             return Integer.toString((int) division); // returns the value if num/denom is a whole number
         } else if ((num < 0) || (denom < 0)) {
             return "-" + Math.abs(num) + "/" + Math.abs(denom); // adds "-" to the beginning if either num or denom are negative
@@ -29,33 +29,46 @@ public class LinearEquation {
             return num + "/" + denom; // else if they're neither negative or a whole number this just returns the value as a fraction
         }
 }
-        public double getYIntercept()
+        public String getYIntercept()
         {
             double slopePoint = division*(x1);
             double yIntercept = (y1 - slopePoint);
-            return yIntercept;
+            return String.format("%.2f", yIntercept);
         }
 
         public String getEquation()
         {
-            if (getYIntercept() > 0)
+            double yIntercept= Double.parseDouble(getYIntercept());
+            if ((yIntercept > 0) && (y1 != y2))
             {
                 return "y = "+ getSlope() + "x + "+ getYIntercept(); // if y intercept is positive it returns the equation with a "+"
-            } else
+            } else if ((yIntercept < 0) && (y1 != y2))
             {
-                return "y = "+ getSlope() + "x - "+ Math.abs(getYIntercept()); // if y intercept is negative it returns the equation with a "-"
+                return "y = "+ getSlope() + "x - "+ Math.abs(yIntercept); // if y intercept is negative it returns the equation with a "-"
+            } else {
+                return "y = "+ getYIntercept();
             }
 
         }
 
         public String getInfo()
         {
-            String text = "The two points are: (" + x1 +", "+ y1+ ") and ("+x2 +", "+y2+ ")";
+            String text = "\n----------Line Info----------";
+            text+= "\n The two points are: (" + (int)x1 +", "+ (int)y1+ ") and ("+(int)x2 +", "+(int)y2+ ")";
             text += "\nThe equation of the line between these points is "+ getEquation();
             text += "\n The slope of this line is: "+ getSlope();
-            text += "\n The y-intercept of this line is: "+ +getYIntercept();
+            text += "\n The y-intercept of this line is: "+ getYIntercept();
             text += "\n The distance between the two points is: "+ getDistance();
+            text += "\n-----------------------------";
             return text;
+        }
+
+        public String getCoordinates(double newX)
+        {
+            double num = y2 - y1;
+            double denom = x2 - x1;
+            double newY= (num/denom)* newX + Double.parseDouble(getYIntercept());
+            return "("+ newX+ ", "+ newY + ")";
         }
 
 
