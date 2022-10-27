@@ -42,7 +42,7 @@ public class LinearEquation {
             }
             else if ((num < 0) && (denom < 0) || ((num > 0) && (denom > 0)))
             {
-                return num + "/" + denom;
+                return Math.abs(num) + "/" + Math.abs(denom);
             }
             else
             {
