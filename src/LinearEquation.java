@@ -23,7 +23,7 @@ public class LinearEquation {
         this.num = (int) y2 - (int) y1;
         this.denom = (int) x2 - (int) x1;
         this.division = (double) num / denom;
-        return division;
+        return toRound(division);
     }
 
         public double getYIntercept()
@@ -40,26 +40,40 @@ public class LinearEquation {
             if ((num % denom) == 0) {
                 return Integer.toString((int)getSlope()); // returns the value if num/denom is a whole number
             }
-            else if ((num < 0) || (denom < 0)) {
-                return "-" + Math.abs(num) + "/" + Math.abs(denom); // adds "-" to the beginning if either num or denom are negative
+            else if ((num < 0) && (denom < 0) || ((num > 0) && (denom > 0)))
+            {
+                return num + "/" + denom;
             }
-            else {
-                return num + "/" + denom; // else if they're neither negative or a whole number this just returns the value as a fraction
+            else
+            {
+                return "-" + Math.abs(num) + "/" + Math.abs(denom); // adds "-" to the beginning if either num or denom are negative
             }
         }
 
         public String getEquation()
         {
-            if ((getYIntercept() > 0) && (y1 != y2))
+            if ((getYIntercept() > 0) && (y1 != y2) && (getSlope() != 1 || getSlope() != -1))
             {
                 return "y = "+ getSlopeForEquation() + "x + "+ Math.abs(getYIntercept()); // if y intercept is positive it returns the equation with a "+"
-            } else if ((getYIntercept() < 0) && (y1 != y2))
+            } else if ((getYIntercept() < 0) && (y1 != y2) && (getSlope() != 1 || getSlope() != -1))
             {
                 return "y = "+ getSlopeForEquation() + "x - "+ Math.abs(getYIntercept()); // if y intercept is negative it returns the equation with a "-"
-            } else {
+            } else  if ((getYIntercept() > 0) && (y1 != y2) && (getSlope() == 1))
+            {
+                return "y = x + "+ getYIntercept();
+            } else if ((getYIntercept() > 0) && (y1 != y2) && (getSlope() == 1))
+            {
+                return "y = x - "+ Math.abs(getYIntercept());
+            } else if ((getYIntercept() > 0) && (y1 != y2) && (getSlope() == -1))
+            {
+                return "y = -x + "+ getYIntercept();
+            } else if ((getYIntercept() < 0) && (y1 != y2) && (getSlope() == -1))
+            {
+                return "y = -x - "+ Math.abs(getYIntercept());
+            } else
+            {
                 return "y = "+ getYIntercept();
             }
-
         }
 
         public String getInfo()
