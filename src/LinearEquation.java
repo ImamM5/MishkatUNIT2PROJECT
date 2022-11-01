@@ -98,7 +98,8 @@ public class LinearEquation {
 
         public double toRound(double x) //helper method to round the decimals
     {
-        return Math.round(x * 100.0)/ 100.0;
+        double scale = Math.pow(10, 2);
+        return Math.round(x * scale)/ scale;
     }
 
 
