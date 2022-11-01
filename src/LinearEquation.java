@@ -72,7 +72,7 @@ public class LinearEquation {
                 return "y = -x - "+ Math.abs(getYIntercept());
             } else
             {
-                return "y = "+ getYIntercept();
+                return "y = "+ getSlopeForEquation();
             }
         }
 
