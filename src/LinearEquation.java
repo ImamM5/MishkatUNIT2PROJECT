@@ -16,24 +16,24 @@ public class LinearEquation {
 
     public double getDistance() { // gets the distance using the distance formula
         double distance = Math.sqrt((Math.pow((x2 - x1), 2)) + (Math.pow((y2 - y1), 2)));
-        return toRound(distance);
+        return roundedToHundredth(distance);
     }
 
-    public double getSlope() {
+    public double getSlope() { // finds the slope in decimal
         this.num = (int) y2 - (int) y1;
         this.denom = (int) x2 - (int) x1;
         this.division = (double) num / denom;
-        return toRound(division);
+        return roundedToHundredth(division);
     }
 
-        public double getYIntercept()
+        public double getYIntercept() //finds the y intercept
         {
-            double slopePoint = division*(x1);
+            double slopePoint = getSlope()*(x1);
             double yIntercept = (y1 - slopePoint);
-            return toRound(yIntercept);
+            return roundedToHundredth(yIntercept);
         }
 
-        public String getSlopeForEquation()
+        public String getSlopeForEquation() // finds the slope for the equation
         {
             this.num = (int) y2 - (int) y1;
             this.denom = (int) x2 - (int) x1;
@@ -50,33 +50,44 @@ public class LinearEquation {
             }
         }
 
-        public String getEquation()
+        public String getEquation() //finds the equation of the line
         {
-            if ((getYIntercept() > 0) && (y1 != y2) && (getSlope() != 1 || getSlope() != -1))
-            {
-                return "y = "+ getSlopeForEquation() + "x + "+ Math.abs(getYIntercept()); // if y intercept is positive it returns the equation with a "+"
-            } else if ((getYIntercept() < 0) && (y1 != y2) && (getSlope() != 1 || getSlope() != -1))
-            {
-                return "y = "+ getSlopeForEquation() + "x - "+ Math.abs(getYIntercept()); // if y intercept is negative it returns the equation with a "-"
-            } else  if ((getYIntercept() > 0) && (y1 != y2) && (getSlope() == 1))
+            if ((getYIntercept() > 0) && (y1 != y2) && (getSlope() == 1)) //if y intercept is positive and y val are not equal and slope is equal to 1 then it returns the equation with a "+" and only "x"
             {
                 return "y = x + "+ getYIntercept();
-            } else if ((getYIntercept() > 0) && (y1 != y2) && (getSlope() == 1))
+            } else if ((getYIntercept() < 0) && (y1 != y2) && (getSlope() == 1)) //if y intercept is negative and y val are not equal and slope is equal to 1 then it returns the equation with a "-" and only "x"
             {
                 return "y = x - "+ Math.abs(getYIntercept());
-            } else if ((getYIntercept() > 0) && (y1 != y2) && (getSlope() == -1))
+            } else if ((getYIntercept() > 0) && (y1 != y2) && (getSlope() == -1)) // if y intercept is positive and y val are not equal and slope is equal to -1 then it returns the equation with a "+" and only "-x"
             {
                 return "y = -x + "+ getYIntercept();
-            } else if ((getYIntercept() < 0) && (y1 != y2) && (getSlope() == -1))
+
+            } else if ((getYIntercept() < 0) && (y1 != y2) && (getSlope() == -1)) { // if y intercept is negative and y val are not equal and slope is equal to -1 then it returns the equation with a "-" and only "-x"
+                return "y = -x - " + Math.abs(getYIntercept());
+
+            }else  if ((getYIntercept() > 0) && (y1 != y2) && (getSlope() != 1 || getSlope() != -1))
             {
-                return "y = -x - "+ Math.abs(getYIntercept());
-            } else
+                return "y = "+ getSlopeForEquation() + "x + "+ Math.abs(getYIntercept()); // if y intercept is positive and y val are not equal and slope is not equal to 1 or -1 then it returns the equation with a "+"
+            } else if ((getYIntercept() < 0) && (y1 != y2) && (getSlope() != 1 || getSlope() != -1))
             {
-                return "y = "+ getSlopeForEquation();
+                return "y = "+ getSlopeForEquation() + "x - "+ Math.abs(getYIntercept()); // if y intercept is negative and y val are not equal and slope is not equal to 1 or -1 then it returns the equation with a "-"
+            }
+             else if (getSlope() == 1 && (y1 != y2)) // at the end if slope is 1 and y vals not equal then prints just x
+            {
+                return "y = x";
+            } else if (getSlope() == -1 && (y1 != y2)) // if slope just -1 then and y vals not equal prints -x
+            {
+                return "y = -x";
+            } else if ((getSlope() != 1 || getSlope() == 1) && (y1!= y2)) // if slope not -1 or 1 and y vals not equal prints x
+            {
+                return "y = " + getSlopeForEquation() + "x";
+            } else // else prints the equation for horizontal line
+            {
+                return "y = "+ (int)y1;
             }
         }
 
-        public String getInfo()
+        public String getInfo() // returns the info of the two points
         {
             String text = "\n----------Line Info----------";
             text+= "\nThe two points are: (" + (int)x1 +", "+ (int)y1+ ") and ("+(int)x2 +", "+(int)y2+ ")";
@@ -88,7 +99,7 @@ public class LinearEquation {
             return text;
         }
 
-        public String getCoordinates(double newX)
+        public String getCoordinates(double newX) //finds the new coordinates based on x
         {
             double num = y2 - y1;
             double denom = x2 - x1;
@@ -96,7 +107,7 @@ public class LinearEquation {
             return "("+ newX+ ", "+ newY + ")";
         }
 
-        public double toRound(double x) //helper method to round the decimals
+        public double roundedToHundredth(double x) //helper method to round the decimals
     {
         double scale = Math.pow(10, 2);
         return Math.round(x * scale)/ scale;

@@ -5,10 +5,10 @@ public class LinearEquationRunner
     public static void main(String [] args)
     {
         Scanner input = new Scanner(System.in);
-        System.out.println("----------------------------- \nWelcome!");
-        System.out.print("Please enter your coordinate 1 (integers): ");
+        System.out.println("----------------------------- \nWelcome!"); //welcomes the user
+        System.out.print("Please enter your coordinate 1 (integers): "); // user inputs coordinate 1
         String c1 = input.nextLine();
-        System.out.print("Please enter your coordinate 2 (integer): ");
+        System.out.print("Please enter your coordinate 2 (integer): "); // user inputs coordinae 2
         String c2 = input.nextLine();
 
         int comma1 = c1.indexOf(",");
@@ -23,10 +23,10 @@ public class LinearEquationRunner
         int x2 = Integer.parseInt(x2String); // converts x2 string to int
         int y2 = Integer.parseInt(y2String); // converts y2 string to int
 
-        if (x1 == x2)
+        if (x1 == x2) // if same x value then it prints out the equation for a vertical linea and stops the program
         {
             System.out.println("\nYou have entered coordinates that result in a vertical line in the form of x= "+ x1 + "\n-----------------------------");
-        } else {
+        } else { // else it continues with the program
             LinearEquation points = new LinearEquation(x1, y1, x2, y2);
             System.out.println(points.getInfo());
             System.out.print("Enter a value for x: ");
